@@ -9,14 +9,25 @@ body {
     flex-direction: column;
 }
 
+.header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width: 100%;
+}
+
 .header-content h1 {
     margin: 0; /* Xóa khoảng cách mặc định */
+    font-size: 2rem;
 }
 
 .header-button {
+    width: 100%;
     display: flex;
     justify-content: space-between;
     align-items: center; /* Căn giữa theo chiều dọc */
+    padding: 1rem;
 }
 
 .header-button button {
@@ -42,6 +53,7 @@ body {
 }
 
 .search-input {
+    margin-right: 1rem;
     padding: 0.5rem; /* Khoảng cách bên trong cho input */
     border: 1px solid #ccc; /* Viền cho input */
     border-radius: 0.3rem; /* Bo góc */
