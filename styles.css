@@ -1,0 +1,244 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f9fafb;
+}
+
+.fullcontainer {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.header-content h1 {
+    margin: 0; /* Xóa khoảng cách mặc định */
+}
+
+.header-button {
+    display: flex;
+    justify-content: space-between;
+    align-items: center; /* Căn giữa theo chiều dọc */
+}
+
+.header-button button {
+    margin-left: 1rem;
+    max-width: 8rem;
+    padding: 0.5rem 1rem; /* Khoảng cách bên trong nút */
+    border: none; /* Xóa viền */
+    border-radius: 0.3rem; /* Bo góc */
+    background-color: #007BFF; /* Màu nền cho nút */
+    color: white; /* Màu chữ cho nút */
+    cursor: pointer; /* Con trỏ chuột khi hover */
+    transition: background-color 0.3s; /* Hiệu ứng chuyển màu */
+}
+
+.header-button button:hover {
+    background-color: #0056b3; /* Màu nền khi hover */
+}
+
+.search-container {
+    display: flex;
+    width: 100%;
+    max-width: 25rem;
+}
+
+.search-input {
+    padding: 0.5rem; /* Khoảng cách bên trong cho input */
+    border: 1px solid #ccc; /* Viền cho input */
+    border-radius: 0.3rem; /* Bo góc */
+    width: 100%; /* Chiều rộng cố định cho input */
+    transition: border-color 0.3s; /* Hiệu ứng chuyển màu viền */
+}
+
+.search-input:focus {
+    border-color: #007BFF; /* Màu viền khi focus */
+    outline: none; /* Xóa outline mặc định */
+}
+
+.form-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width: 100%;
+}
+
+.formAdd {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    max-width: 30rem;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #f9fafb;
+    padding: 1.2rem;
+    border-radius: 0.5rem;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+}
+
+.closeButton {
+    position: absolute;
+    top: 0;
+    right: 0;
+    background-color: transparent;
+    border: none;
+    border-radius: 0.5rem;
+    padding: 0.5rem;
+    font-size: 1rem;
+    cursor: pointer;
+}
+
+.closeButton:hover {
+    color: #fc0000;
+}
+
+.form-group {
+    width: 100%;
+}
+.form-content {
+    background-color: white;
+    padding: 1.2rem;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    width: 100%;
+}
+
+label {
+    display: block;
+    font-weight: bold;
+    color: #4a4a4a;
+}
+
+.form-content input[type="text"],
+.form-content input[type="number"],
+.form-content input[type="date"] {
+    padding: 0.5rem;
+    border: 1px solid #ccc;
+    border-radius: 0.3rem;
+    width: 100%;
+    margin-top: 0.3rem;
+    margin-bottom: 0.8rem;
+    transition: border-color 0.3s;
+    font-size: 1rem;
+    margin-right: 1.2rem;
+}
+
+.gender-selection {
+    display: flex;
+    align-items: center;
+    margin-bottom: 1rem;
+}
+
+.gender-selection label {
+    display: flex;
+    align-items: center;
+}
+
+.gender-selection input {
+    margin-right: 5px;
+}
+
+.form-input {
+    margin-right: 1.2rem;
+}
+
+.normalButton {
+    width: 100%;
+    padding: 10px;
+    background-color: #4f46e5;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.normalButton:hover {
+    background-color: #4338ca;
+}
+
+/* CSS cho bảng sinh viên */
+#studentTable {
+    width: 100%;
+    border-collapse:separate; /* Gộp các đường viền */
+    margin-top: 1rem; /* Khoảng cách trên bảng */
+}
+
+#studentTable th, #studentTable td {
+    padding: 0.8rem; /* Khoảng cách bên trong ô */
+    text-align: center; /* Căn trái nội dung */
+    border-bottom: 1px solid #ddd; /* Đường viền dưới cho các ô */
+    font-size: 1rem;
+}
+
+#studentTable th {
+    background-color: #4f46e5; /* Màu nền cho tiêu đề */
+    color: white; /* Màu chữ cho tiêu đề */
+}
+
+#studentTable tr {
+    background-color: #f1f1f1; /* Màu nền cho tiêu đề */
+}
+
+#studentTable tr:hover {
+    background-color: #686363; /* Màu nền khi di chuột qua hàng */
+}
+
+/* Base font size */
+html {
+    font-size: 16px;
+}
+
+@media (max-width: 480px) {
+    html {
+        font-size: 14px;
+    }
+}
+
+@media (min-width: 481px) and (max-width: 767px) {
+    html {
+        font-size: 15px;
+    }
+}
+
+@media (min-width: 768px) and (max-width: 1024px) {
+    html {
+        font-size: 17px;
+    }
+}
+
+@media (min-width: 1025px) and (max-width: 1280px) {
+    html {
+        font-size: 14px;
+    }
+}
+
+@media (min-width: 1281px) and (max-width: 1500px) {
+    html {
+        font-size: 15.5px;
+    }
+}
+
+@media (min-width: 1501px) and (max-width: 1680px) {
+    html {
+        font-size: 17px;
+    }
+}
+
+@media (width: 1680px) {
+    html {
+        font-size: 19px;
+    }
+}
+
+@media (min-width: 1681px) and (max-width: 1999px) {
+    html {
+        font-size: 20px;
+    }
+}
+
+@media (min-width: 2000px) {
+    html {
+        font-size: 30px;
+    }
+}
