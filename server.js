@@ -3,7 +3,7 @@ const bodyParser = require('body-parser');
 const fs = require('fs');
 const path = require('path');
 const cors = require('cors'); // Import the cors middleware
-const { parse } = require('fast-csv'); // Import fast-csv
+const fastcsv = require('fast-csv'); // Import fast-csv
 const { writeFile } = require('fs').promises; // Sử dụng promises để ghi file
 
 const app = express();
@@ -18,7 +18,7 @@ const filePath = path.join(__dirname, 'MOCK_DATA.csv');
 app.get('/students', (req, res) => {
     const results = [];
     fs.createReadStream(filePath)
-        .pipe(parse({ headers: true }))
+        .pipe(fastcsv.parse({ headers: true })) // Use fast-csv to parse
         .on('data', row => results.push(row))
         .on('end', () => {
             res.json(results);
@@ -47,12 +47,12 @@ app.post('/save-csv', async (req, res) => {
         await fs.promises.access(filePath);
         // Nếu file đã tồn tại, chỉ cần thêm dữ liệu
         await fs.promises.appendFile(filePath, csvContent, 'utf8');
-        res.send('CSV file saved successfully');
+        res.send('Add student successfully');
     } catch (err) {
         // Nếu file không tồn tại, ghi tiêu đề vào file
         const header = 'studentID,name,gender,dob\n';
         await writeFile(filePath, header + csvContent, 'utf8');
-        res.send('CSV file saved successfully with header');
+        res.send('Add student successfully');
     }
 });
 
@@ -63,20 +63,25 @@ app.delete('/students/:studentID', async (req, res) => {
 
     try {
         const data = await fs.promises.readFile(filePath, 'utf8');
-        const rows = data.trim().split('\n');
-        const headers = rows[0]; // Lưu tiêu đề
 
-        rows.slice(1).forEach(line => {
-            const values = line.split(',').map(value => value.trim());
-            if (values[0] !== studentID) {
-                results.push(line); // Giữ lại các dòng không có studentID cần xóa
-            }
-        });
-
-        // Ghi lại nội dung mới vào file CSV
-        const newCsvContent = [headers, ...results].join('\n');
-        await writeFile(filePath, newCsvContent, 'utf8');
-        res.send('Student deleted successfully');
+        // Sử dụng fast-csv để xử lý dữ liệu
+        fastcsv
+            .parseString(data, { headers: true })
+            .on('data', row => {
+                if (row.studentID !== studentID) {
+                    results.push(row); // Giữ lại các dòng không có studentID cần xóa
+                }
+            })
+            .on('end', async () => {
+                // Ghi lại nội dung mới vào file CSV
+                const newCsvContent = [
+                    Object.keys(results[0]).join(','), // Lưu tiêu đề
+                    ...results.map(row => Object.values(row).join(','))
+                ].join('\n');
+                
+                await fs.promises.writeFile(filePath, newCsvContent, 'utf8');
+                res.send('Student deleted successfully');
+            });
     } catch (err) {
         console.error('Error processing file:', err);
         res.status(500).send('Error processing file');

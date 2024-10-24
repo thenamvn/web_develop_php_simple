@@ -78,7 +78,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 <td>${student.name}</td>
                 <td>${student.gender}</td>
                 <td>${student.dob}</td>
-                <td><button class="normalButton" data-id="${student.studentID}">Delete</button></td>
+                <td><button class="normalButton delete-button" data-id="${student.studentID}">Delete</button></td>
             `;
             studentTableBody.appendChild(row);
         });
